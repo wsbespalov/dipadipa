@@ -1,0 +1,22 @@
+{
+  "name": "clean_city",
+  "version": "1.0.0",
+  "description": "sait Clean City",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wsbespalov/dipadipa.git"
+  },
+  "keywords": [
+    "clean"
+  ],
+  "author": "BDA-GAK",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wsbespalov/dipadipa/issues"
+  },
+  "homepage": "https://github.com/wsbespalov/dipadipa#readme"
+}
