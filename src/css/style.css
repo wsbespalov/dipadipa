@@ -1,6 +1,6 @@
 
 /* --------------- Meny --------------- */
-header {
+/* header {
 	overflow: hidden;
 	background-color: dodgerblue;
 	font-size: 1.2em;
@@ -48,14 +48,15 @@ nav {
 .punkt-meny>a {
 	text-decoration: none;
 	margin: 0;
-}
+} */
 
 /* ------------------------------------ */
 /* 				Main page 				*/
 /* ------------------------------------ */
 body {
-	background-image: url(../img/background_grass2.jpg);
-	background-repeat: repeat;
+	/* background-image: url(../img/background_grass2.jpg);
+	background-repeat: repeat; */
+	background-color: lightgrey;
 }
 
 main {

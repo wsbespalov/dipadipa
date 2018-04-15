@@ -1,0 +1,12 @@
+article {
+    background-color: lightblue;
+}
+form {
+    margin: 0 20px;
+}
+article>p{
+    margin: 0 20px;
+}
+aside {
+    margin-top: 0 !important;
+}
