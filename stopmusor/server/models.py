@@ -33,4 +33,36 @@ class News(models.Model):
 
     @permalink
     def get_absolute_url(self):
-        return ("vew_news_post", None, {"slug": self.slug})
+        return ("view_news_post", None, {"slug": self.slug})
+
+class Question(models.Model):
+    objects = models.Manager()
+    class Meta:
+        ordering = ['posted', ]
+    title = models.TextField(
+        default="New",
+        verbose_name="Question title"
+    )
+    fio = models.TextField(
+        default="",
+        verbose_name="Question User Name"
+    )
+    email = models.TextField(
+        default="",
+        verbose_name="Question User email"
+    )
+    body = models.TextField(
+        default="",
+        verbose_name="Question Body"
+    )
+    posted = models.DateField(
+        db_index=True,
+        auto_now_add=True
+    )
+
+    def __unicode__(self):
+        return "%s" % self.title
+
+    @permalink
+    def get_absolute_url(self):
+        return ("view_question_post", None, {"body": self.body})

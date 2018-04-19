@@ -5,6 +5,7 @@ from django.http import HttpResponse
 # Create your views here.
 
 from .models import News
+from .models import Question
 
 def index(request):
     return render(
@@ -46,5 +47,7 @@ def questions(request):
     return render(
         request=request,
         template_name='questions.html',
-        context={}
+        context={
+            'questions': Question.objects.all()[:5]
+        }
     )

@@ -1,4 +1,19 @@
 {% extends "base.html" %}
 {% block content %}
     <h1>This is questions</h1>
+    {% if questions %}
+
+        {% for q in questions %}
+            <p>-----------------------------------------</p>
+            <p>Question for {{ q.fio }} :: {{ q.email }}</p>
+            <p>{{ q.body }}</p>
+            <p>Posted at {{ q.posted }}</p>
+
+        {% endfor %}
+
+    {% else %}
+
+        <p>No questions yet!!!</p>
+
+    {% endif %}
 {% endblock %}
