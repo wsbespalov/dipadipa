@@ -20,6 +20,7 @@ from server import views as server_views
 
 urlpatterns = [
     url(r'^$', server_views.index, name='index'),
+    url(r'^$', server_views.Papers, name='papers'),
     url(r'^news/', server_views.news, name='news'),
     url(r'^service/', server_views.service, name='service'),
     url(r'^appeal/', server_views.appeal, name='appeal'),

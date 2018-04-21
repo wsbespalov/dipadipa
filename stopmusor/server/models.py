@@ -35,6 +35,75 @@ class News(models.Model):
     def get_absolute_url(self):
         return ("view_news_post", None, {"slug": self.slug})
 
+class Papers(models.Model):
+    objects = models.Manager()
+    class Meta:
+        ordering = ['posted', ]
+    title = models.TextField(
+        default="New",
+        verbose_name="Papers title"
+    )
+    foto_title = models.TextField(
+        default="New",
+        verbose_name="Foto title"
+    )
+    author = models.TextField(
+        default="Author",
+        verbose_name="Papers Author"
+    )
+    body = models.TextField(
+        default='Body',
+        verbose_name="Papers body"
+    )
+    posted = models.DateField(
+        db_index=True,
+        auto_now_add=True
+    )
+
+    def __unicode__(self):
+        return "%s" % self.title
+
+    @permalink
+    def get_absolute_url(self):
+        return ("view_papers_post", None, {"body": self.body})
+
+class Service(models.Model):
+    objects = models.Manager()
+    class Meta:
+        ordering = ['posted', ]
+    title = models.TextField(
+        default="New",
+        verbose_name="Service title"
+    )
+    foto = models.TextField(
+        default="Foto",
+        verbose_name="Way to foto"
+    )
+    foto_title = models.TextField(
+        default="Foto",
+        verbose_name="Foto title"
+    )
+    author = models.TextField(
+        default="Author",
+        verbose_name="Service Author"
+    )
+    body = models.TextField(
+        default='Body',
+        verbose_name="Service body"
+    )
+    posted = models.DateField(
+        db_index=True,
+        auto_now_add=True
+    )
+
+    def __unicode__(self):
+        return "%s" % self.title
+
+    @permalink
+    def get_absolute_url(self):
+        return ("view_service_post", None, {"body": self.body})
+
+
 class Question(models.Model):
     objects = models.Manager()
     class Meta:

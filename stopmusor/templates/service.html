@@ -1,4 +1,42 @@
 {% extends "base.html" %}
 {% block content %}
-    <h1>This is service</h1>
+    <h1>Услуги предоставляемые компанией</h1>
+    <article>
+
+        {% if service %}
+            {% for n in service %}
+                <div class="article-main">
+                    <h3 class="article-gradient">{{ n.title }}</h3>
+                    <div class="foto-artikl">
+                        <img  class="foto-a" src="{{ n.foto }}" alt="{{ n.foto_title }}">
+                    </div>
+                    <div class="text-artikl">
+                        {{ n.body }}
+                        <p class="posted-by">Posted by: {{ n.author }} at {{ n.posted }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+
+        {% else %}
+            <p>No service</p>
+        {% endif %}
+
+    </article>
+
+    <aside>
+        {% if news %}
+            {% for n in news %}
+                <div class="card border-secondary mb-3 text-center">
+                    <div class="card-header">{{ n.title }}</div>
+                    <div class="card-body text-secondary">
+                        <h4 class="card-title">{{ n.slug }}</h4>
+                        <p class="card-text" style="text-align: justify">{{ n.body }}</p>
+                        <p class="card-footer">Posted by: {{ n.author }} at {{ n.posted }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No News</p>
+        {% endif %}
+    </aside>
 {% endblock %}

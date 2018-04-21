@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
-    <h1>This is news</h1>
+    <h1>Новости</h1>
 
     {% if news %}
 
         {% for n in news %}
 
-            <div class="card border-secondary mb-3 text-center">
-                <div class="card-header">{{ n.title }}</div>
+            <div class="card mb-3 text-center">
+                <div class="card-header news-gradient">{{ n.title }}</div>
                 <div class="card-body text-secondary">
                     <h4 class="card-title">{{ n.slug }}</h4>
                     <p class="card-text" style="text-align: justify">{{ n.body }}</p>

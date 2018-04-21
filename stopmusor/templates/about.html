@@ -1,4 +1,129 @@
-{% extends "base.html" %}
-{% block content %}
-    <h1>This is about</h1>
+{% extends "base.html" %} {% block content %}
+<main>
+    <h1>Контакты</h1>
+    <h3> Сведения об организации</h3>
+    <div class="content">
+        <table id="tbl1" style="width: 100%; border:1px solid #DDDDDD; border-collapse: collapse; ">
+            <tbody>
+                <tr>
+                    <td> Название организации</td>
+                    <td>
+                        <div itemprop="RegDate">
+                            Чистый город
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td> Дата создания организации</td>
+                    <td>
+                        <div itemprop="RegDate">
+                            <br> 10.10.2015 г
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td> Адрес местонахождения образовательной организации</td>
+                    <td>
+                        <div itemprop="address"> 307900, г. Таганрог.</div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Филиалы организации</td>
+                    <td>нет</td>
+                </tr>
+
+                <tr>
+                    <td>Режим,график работы</td>
+                    <td>
+                        <span itemprop="WorkTime">пн. - сб. 8.00-18.00
+                            <br>График приёма</a>
+                        </span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Контактные телефоны</td>
+                    <td>
+                        <span itemprop="telephone">+7(863)123-321, +7(863)321-123</span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Факсы</td>
+                    <td>
+                        <span itemprop="fax">+7(863)-123-321</span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Адреса электронной почты</td>
+                    <td>
+                        <span itemprop="email">pochta@mail.ru</span>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+
+
+        <h3> Сведения об учредителях организации</h3>
+        <div itemprop="uchredLaw">
+            <table id="tbl1" style="width: 100%; border:1px solid #DDDDDD; border-collapse: collapse; ">
+                <tbody>
+                    <tr>
+                        <td>Наименование учредителя
+                        </td>
+
+                        <td>Фамилия, имя, отчество руководителяорганизации
+                        </td>
+
+                        <td> Адрес местонахождения учредителя(ей)
+                        </td>
+
+                        <td>Контактные телефоны
+                        </td>
+
+                        <td>Адрес электронной почты
+                        </td>
+
+                        <td>Адрес сайта учредителя(ей) в сети Интернет
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <span itemprop="nameUchred"> Учредителем является:
+                                <br> Министерство уборки Российской Федерации</span>
+                        </td>
+
+                        <td>
+                            <span itemprop="fullnameUchred"> Иванов Иван Иванович </span>
+                        </td>
+
+                        <td>
+                            <span itemprop="addressUchred"> Россия, 125993, г. Москва</span>
+                        </td>
+
+                        <td>
+                            <span itemprop="telUchred"> +7 (495) 456-654</span>
+                        </td>
+
+                        <td>
+                            <span itemprop="mailUchred">prf@mon.rf.ru </span>
+                        </td>
+
+                        <td>
+                            <span itemprop="websiteUchred">
+                                <a href="#">Ссылка</a>
+                            </span>
+                        </td>
+
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+</main>
 {% endblock %}
