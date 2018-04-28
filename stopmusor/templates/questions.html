@@ -1,6 +1,45 @@
 {% extends "base.html" %}
 {% block content %}
-    <h1>Вопрос - ответ</h1>
+    <div class="col-xl-12">
+        <h1 class="text-center text-uppercase my-3">Вопрос - ответ</h1>
+    </div>
+    <!-- <div class="row"> -->
+        <article class="col-xl-8 col-lg-8">
+            {% if questions %}
+                {% for q in questions %}
+                    <div class="row card rounded-top my-3">
+                        <h3 class="card-header text-center" >Вопрос</h3>
+
+                            <p class="question-text">Question for {{ q.fio }} :: {{ q.email }}</p>
+                            <p class="question-text">{{ q.body }}</p>
+                            <p class="card-footer">Posted at {{ q.posted }}</p>
+
+                    </div>
+                {% endfor %}
+            {% else %}
+                <h2 class="text-center text-uppercase my-3">Пока нет никаких вопросов</h2>
+            {% endif %}
+        </article>
+
+        <aside class="col-xl-4 col-lg-4"> 
+            {% if news %}
+                {% for n in news %}
+                    <div class="card my-3 text-center">
+                        <div class="card-header">{{ n.title }}</div>
+                        <div class="card-body text-secondary">
+                            <h4 class="card-title">{{ n.slug }}</h4>
+                            <!-- <p class="card-text" style="text-align: justify">{{ n.body }}</p> -->
+                            <p class="card-footer">Posted by: {{ n.author }} at {{ n.posted }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <h2 class="text-center text-uppercase my-3">Сейчас нет новостей</h2>
+            {% endif %}
+        </aside>
+    <!-- </div>     -->
+
+<!-- <h1>Вопрос - ответ</h1>
     <article>
     {% if questions %}
         {% for q in questions %}
@@ -26,7 +65,7 @@
                     <div class="card-header">{{ n.title }}</div>
                     <div class="card-body text-secondary">
                         <h4 class="card-title">{{ n.slug }}</h4>
-                        <!-- <p class="card-text" style="text-align: justify">{{ n.body }}</p> -->
+                        <p class="card-text" style="text-align: justify">{{ n.body }}</p>
                         <p class="card-footer">Posted by: {{ n.author }} at {{ n.posted }}</p>
                     </div>
                 </div>
@@ -34,5 +73,6 @@
         {% else %}
             <p>No News</p>
         {% endif %}
-    </aside>
+    </aside> -->
+
 {% endblock %}

@@ -1,6 +1,50 @@
 {% extends "base.html" %}
 {% block content %}
-    <h1>Услуги предоставляемые компанией</h1>
+
+    <div class="col-xl-12">
+        <h1 class="text-center text-uppercase my-3">Услуги предоставляемые компанией</h1>
+    </div>
+    <div class="row">
+        <article class="col-xl-8 col-lg-8">
+            {% if service %}
+                {% for n in service %}
+                    <div class="row card rounded-top my-3">
+                        <h3 class="card-header text-center" >{{ n.title }}</h3>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4 card-body">
+                                <img  class="img-fluid rounded " src="../static/img/Kamaz.jpg" alt="{{ n.foto_title }}">
+                            </div>
+                            <div class="col-lg-9 col-md-8 card-body">
+                                {{ n.body }}
+                                <p class="posted-by">Posted by: {{ n.author }} at {{ n.posted }}</p>
+                            </div>
+                        </div> 
+                    </div>
+                {% endfor %}
+            {% else %}
+                <h1 class="text-center text-uppercase my-3">Здесь пока нет услуг</h1>
+            {% endif %}
+        </article>
+
+        <aside class="col-xl-4 col-lg-4"> 
+            {% if news %}
+                {% for n in news %}
+                    <div class="card my-3 text-center">
+                        <div class="card-header">{{ n.title }}</div>
+                        <div class="card-body text-secondary">
+                            <h4 class="card-title">{{ n.slug }}</h4>
+                            <!-- <p class="card-text" style="text-align: justify">{{ n.body }}</p> -->
+                            <p class="card-footer">Posted by: {{ n.author }} at {{ n.posted }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No News</p>
+            {% endif %}
+        </aside>
+    </div>
+
+    <!-- <h1>Услуги предоставляемые компанией</h1>
     <article>
 
         {% if service %}
@@ -38,5 +82,5 @@
         {% else %}
             <p>No News</p>
         {% endif %}
-    </aside>
+    </aside> -->
 {% endblock %}

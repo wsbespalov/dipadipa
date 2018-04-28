@@ -6,68 +6,90 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     {% load static %}
-    <link rel="stylesheet" href="{% static '/css/styles.css' %}">
+    <!-- <link rel="stylesheet" href="{% static '/css/styles.css' %}"> -->
 </head>
 <body>
-    <header>
-        <div class="meny-header">
-            <div class="logo">
-                Логотип
-            </div>
-            {% block sidebar %}
-            <nav>
-                <ul class="meny">
-                    <li class="punkt-meny">
-                        <a href="{% url 'index' %}" title="Главная">Главная</a>
+    <div class="container">
+        <!-- <div class="row"> -->
+        {% block sidebar %}
+        <nav class="row navbar sticky-top navbar-expand-md navbar-dark bg-primary">
+            <!-- <a class="navbar-brand" href="#">Логотип</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar1" aria-controls="navbar1" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button> -->
+            <a class="navbar-brand" href="#">
+                <img src="../static/img/Kamaz.jpg" width="50" height="50" alt="...">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar1" aria-controls="navbar1" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <nav class="collapse navbar-collapse" id="navbar1">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active border-right px-xl-4 px-lg-2" >
+                        <a class="nav-link" href="{% url 'index' %}">Главная <span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="punkt-meny">	
-                        <a href="/news/" title="Новости">Новости</a>						
+                    <li class="nav-item active border-right px-xl-4 px-lg-2">
+                        <a class="nav-link" href="/news/">Новости <span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="punkt-meny">	
-                        <a href="/service/" title="Услуги">Услуги</a>						
+                    <li class="nav-item dropdown active border-right px-xl-4 px-lg-2">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Услуги</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                            <a class="dropdown-item" href="/service/">Услуги</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Карта</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Прочие</a>
+                        </div>
                     </li>
-                    <li class="punkt-meny">	
-                        <a href="/questions/" title="Вопрос - ответ">Вопрос - ответ</a>						
+                    <li class="nav-item active border-right px-xl-4 px-lg-2">
+                        <a class="nav-link" href="/questions/">Вопрос - ответ <span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="punkt-meny">	
-                        <a href="/appeal/" title="Обращение граждан">Обращение граждан</a>						
+                    <li class="nav-item active border-right px-xl-4 px-lg-2">
+                        <a class="nav-link" href="/appeal/">Обращение граждан <span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="punkt-meny">	
-                        <a href="/about/" title="О компании">О компании</a>						
+                    <li class="nav-item active px-xl-4 px-lg-2">
+                        <a class="nav-link" href="/about/">О компании <span class="sr-only">(current)</span></a>
                     </li>
                 </ul>
             </nav>
-            {% endblock %}
-        </div>
-    </header>
+        </nav>
 
-    <!-- <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-2">
-                 block sidebar 
-                <ul class="sidebar-nav">
-                    <li><a href="{% url 'index' %}">Home</a></li>
-                    <li><a href="/news/">News</a></li>
-                    <li><a href="/service/">Service</a></li>
-                    <li><a href="/appeal/">Appeal</a></li>
-                    <li><a href="/about/">About</a></li>
-                    <li><a href="/questions/">Questions</a></li>
-                </ul>
-                 endblock 
-            </div>
-            <div class="col-sm-10">
-                 block content 
-                 endblock 
-            </div>
-        </div>
-    </div> -->
+        
+            <!-- <nav class="navbar navbar-dark bg-info">
+                <li class="col-xl-1 col-md-1">
+                    <a href="{% url 'index' %}" title="Главная">Логотип</a>
+                </li>
+                <li class="col-xl-1 col-md-1">
+                    <a href="{% url 'index' %}" title="Главная">Главная</a>
+                </li>
+                <li class="col-xl-2 col-md-2">	
+                    <a href="/news/" title="Новости">Новости</a>						
+                </li>
+                <li class="col-xl-2 col-md-2">	
+                    <a href="/service/" title="Услуги">Услуги</a>						
+                </li>
+                <li class="col-xl-2 col-md-2">	
+                    <a href="/questions/" title="Вопрос - ответ">Вопрос - ответ</a>						
+                </li>
+                <li class="col-xl-2 col-md-2">	
+                    <a href="/appeal/" title="Обращение граждан">Обращение граждан</a>						
+                </li>
+                <li class="col-xl-2 col-md-2">	
+                    <a href="/about/" title="О компании">О компании</a>						
+                </li>
+            </nav>  -->
+
+        {% endblock %}
+        <!-- </div> -->
+
     <!-- Bootstrap 4 Scripts -->
 
-    <main>
-        {% block content %}
-        
-        {% endblock %}
-    </main>
+        <main class="row">
+            {% block content %}
+            
+            {% endblock %}
+        </main>
+    </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

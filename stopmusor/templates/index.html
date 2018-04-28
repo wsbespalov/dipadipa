@@ -1,43 +1,49 @@
 {% extends "base.html" %}
 {% block content %}
-    <h1>Чистый город</h1>
-    <div class="main-foto">
-        <img class="foto-m" src="static/img/main_foto.jpg" alt="Фото города">
+    <div class="col-xl-12">
+        <h1 class="text-center text-uppercase my-3">Чистый город</h1>
     </div>
-    <article>
-        {% if papers %}
-            {% for n in papers %}
-                <div class="article-main">
-                    <h3 class="article-gradient" >{{ n.title }}</h3>
-                    <div class="foto-artikl">
-                        <img  class="foto-a" src="static/img/musuruvoz.jpg" alt="{{ n.foto_title }}">
+    <div class="row">
+        <img class="col-xl-12 img-fluid" src="static/img/main_foto.jpg" alt="Фото города">
+    </div>
+    <div class="row">
+        <article class="col-xl-8 col-lg-8">
+            {% if papers %}
+                {% for n in papers %}
+                    <div class="row card rounded-top my-3">
+                        <h3 class="card-header text-center" >{{ n.title }}</h3>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4 card-body">
+                                <img  class="img-fluid rounded " src="static/img/musuruvoz.jpg" alt="{{ n.foto_title }}">
+                            </div>
+                            <div class="col-lg-9 col-md-8 card-body">
+                                {{ n.body }}
+                                <p class="posted-by">Posted by: {{ n.author }} at {{ n.posted }}</p>
+                            </div>
+                        </div> 
                     </div>
-                    <div class="text-artikl">
-                        {{ n.body }}
-                        <p class="posted-by">Posted by: {{ n.author }} at {{ n.posted }}</p>
-                    </div>
-                </div>
-            {% endfor %}
-        {% else %}
-            <p>No paper</p>
-        {% endif %}
-    </article>
+                {% endfor %}
+            {% else %}
+                <p>No paper</p>
+            {% endif %}
+        </article>
 
-    <aside>
-        {% if news %}
-            {% for n in news %}
-                <div class="card border-secondary mb-3 text-center">
-                    <div class="card-header">{{ n.title }}</div>
-                    <div class="card-body text-secondary">
-                        <h4 class="card-title">{{ n.slug }}</h4>
-                        <!-- <p class="card-text" style="text-align: justify">{{ n.body }}</p> -->
-                        <p class="card-footer">Posted by: {{ n.author }} at {{ n.posted }}</p>
+        <aside class="col-xl-4 col-lg-4"> 
+            {% if news %}
+                {% for n in news %}
+                    <div class="card my-3 text-center">
+                        <div class="card-header">{{ n.title }}</div>
+                        <div class="card-body text-secondary">
+                            <h4 class="card-title">{{ n.slug }}</h4>
+                            <!-- <p class="card-text" style="text-align: justify">{{ n.body }}</p> -->
+                            <p class="card-footer">Posted by: {{ n.author }} at {{ n.posted }}</p>
+                        </div>
                     </div>
-                </div>
-            {% endfor %}
-        {% else %}
-            <p>No News</p>
-        {% endif %}
-    </aside>
+                {% endfor %}
+            {% else %}
+                <p>No News</p>
+            {% endif %}
+        </aside>
+    </div>
 
 {% endblock %}
