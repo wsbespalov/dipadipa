@@ -37,6 +37,15 @@ def service(request):
         }
     )
 
+def map(request):
+    return render(
+        request=request,
+        template_name='map.html',
+        context={
+            "map": News.objects.all()[:5]
+        }
+    )
+
 def appeal(request):
     return render(
         request=request,

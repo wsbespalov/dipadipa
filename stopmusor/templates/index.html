@@ -4,7 +4,7 @@
         <h1 class="text-center text-uppercase my-3">Чистый город</h1>
     </div>
     <div class="row">
-        <img class="col-xl-12 img-fluid" src="static/img/main_foto.jpg" alt="Фото города">
+        <!--<img class="col-xl-12 img-fluid" src="static/img/main_foto.jpg" alt="Фото города">-->
     </div>
     <div class="row">
         <article class="col-xl-8 col-lg-8">
@@ -20,7 +20,7 @@
                                 {{ n.body }}
                                 <p class="posted-by">Posted by: {{ n.author }} at {{ n.posted }}</p>
                             </div>
-                        </div> 
+                        </div>
                     </div>
                 {% endfor %}
             {% else %}
@@ -28,7 +28,7 @@
             {% endif %}
         </article>
 
-        <aside class="col-xl-4 col-lg-4"> 
+        <aside class="col-xl-4 col-lg-4">
             {% if news %}
                 {% for n in news %}
                     <div class="card my-3 text-center">
