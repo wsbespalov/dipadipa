@@ -48,8 +48,18 @@ function initMap() {
             scaledSize: new google.maps.Size(35, 35)
         }));
         marker.setPosition(place.geometry.location);
+
+
+
         marker.setVisible(true);
+        var JsonStr = {
+            adress1: place.name,
+            date: "сегодня"
+        };
         Coordinaty.innerHTML = place.name;
+        alert(JSON.stringify(JsonStr));
+
+
 
         var address = '';
         if (place.address_components) {
