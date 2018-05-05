@@ -3,30 +3,6 @@
 <div class="col-xl-12">
     <h1 class="text-center text-uppercase my-3">Карта расположения точек для сбора мусора</h1>
 </div>
-<!--<style>-->
-    <!--#map {-->
-        <!--width: 100%;-->
-        <!--height: 80vh;-->
-        <!--background-color: grey;-->
-    <!--}-->
-<!--</style>-->
-<!--<div id="map"></div>-->
-<!--<script>-->
-    <!--function initMap() {-->
-        <!--var uluru = {lat: 47.215, lng: 38.899};-->
-        <!--var map = new google.maps.Map(document.getElementById('map'), {-->
-            <!--zoom: 14,-->
-            <!--center: uluru-->
-        <!--});-->
-        <!--var marker = new google.maps.Marker({-->
-            <!--position: uluru,-->
-            <!--map: map-->
-        <!--});-->
-    <!--}-->
-<!--</script>-->
-<!--<script async defer-->
-        <!--src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDSYBzSsLmsN_hkf7SIVOtJzwK2fCSaRZo&callback=initMap">-->
-<!--</script>-->
 
 <div style="height: 800px; width: 1150px;">
     <style>
@@ -113,25 +89,40 @@
 <div class="col-xl-12">
     <div class="card my-2">
         <div class="card-header">
-            Точка на карте 1
+            Установите точку на карте
         </div>
         <div class="card-body text-secondary">
-            <p class="card-text">Здесь расположинна точка для сбора мусора.</p>
-            <p class="card-text" id="coord">Координаты точки 1</p>
-
+            <p class="card-text">Вы выбрали место на карте подтвердите нажатием на кнопку</p>
+            <p class="card-text">Введите ваше имя <input type="text" id="pname" name="query" class="form-control" placeholder="Имя" value=""></p>
+            <p class="card-text">Введите ваш Email <input type="text" id="pemail" name="query" class="form-control" placeholder="Имя" value=""></p>
+            <p class="card-text">Введите название обекта <input type="text" id="pobj" name="query" class="form-control" placeholder="Имя" value=""></p>
+            <p class="card-text">Координаты предложенного вами объекта: <span id="coord">-</span> </p>
+            <button type="submit" class="btn btn-primary text-center" id="akcept">Подтвердить</button>
         </div>
     </div>
 
-    <div class="card my-2">
-        <div class="card-header">
-            Точка на карте 2
-        </div>
-        <div class="card-body text-secondary">
+    {% if map %}
+        {% for m in map %}
+            <div class="card my-2">
+                <div class="card-header">
+                    Объект на карте:
+                </div>
+                <div class="card-body text-secondary">
+                    <p class="card-text">Здесь расположинна точка для сбора мусора.</p>
+                    <p class="card-text">Координаты точки 1</p>
+                    <p class="card-text">{{m.name}} Сообщил о {{m.object_name}} по адресу {{ m.adres }}</p>    
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+    
+    {% if map %}
+        {% for m in map %}
+        <!-- Тут ты выводишь баллуны на карте -->
+        {% endfor %}
+    {% endif %}
 
-            <p class="card-text">Здесь расположинна точка для сбора мусора.</p>
-            <p class="card-text">Координаты точки 2</p>
-        </div>
-    </div>
+   
 </div>
 
 {% endblock %}

@@ -103,6 +103,32 @@ class Service(models.Model):
     def get_absolute_url(self):
         return ("view_service_post", None, {"body": self.body})
 
+class MapObjects(models.Model):
+    objects = models.Manager()
+    class Meta:
+        ordering = ['adres', ]
+    adres = models.TextField(
+        default="",
+        verbose_name="Adres of object"
+    )
+    name = models.TextField(
+        default="",
+        verbose_name="Name of user"
+    )
+    email = models.TextField(
+        default="",
+        verbose_name="Email of user"
+    )
+    object_name = models.TextField(
+        default="",
+        verbose_name="Object name"
+    )
+    def __unicode__(self):
+        return "%s" % self.object_name
+
+    @permalink
+    def get_absolute_url(self):
+        return ("view_map_objects", None, {"body": self.adres})
 
 class Question(models.Model):
     objects = models.Manager()

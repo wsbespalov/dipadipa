@@ -1,13 +1,14 @@
 from django.shortcuts import render, render_to_response, get_object_or_404
 
 from django.http import HttpResponse
-
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 
 from .models import News
 from .models import Question
 from .models import Papers
 from .models import Service
+from .models import MapObjects
 
 def index(request):
     return render(
@@ -42,9 +43,22 @@ def map(request):
         request=request,
         template_name='map.html',
         context={
-            "map": News.objects.all()[:5]
+            "map": MapObjects.objects.all()[:5]
         }
     )
+
+@csrf_exempt 
+def map_append_object(request):
+    if request.method == 'POST':
+        body = request.body
+        print(body)
+        return HttpResponse(
+            body
+        )
+    else:
+        return HttpResponse(
+            "bad request method"
+        )
 
 def appeal(request):
     return render(

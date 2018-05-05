@@ -23,6 +23,7 @@ urlpatterns = [
     url(r'^news/', server_views.news, name='news'),
     url(r'^service/', server_views.service, name='service'),
     url(r'^map/', server_views.map, name='map'),
+    url(r'^map_append_object/', server_views.map_append_object, name='map_append_object'),
     url(r'^appeal/', server_views.appeal, name='appeal'),
     url(r'^about/', server_views.about, name='about'),
     url(r'^questions/', server_views.questions, name='questions'),
