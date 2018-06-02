@@ -1,5 +1,8 @@
 
 function initMap() {
+    
+    window.dolgota = 0,
+    window.shirota = 0;
     var map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: 47.215, lng: 38.899},
         zoom: 14
@@ -39,7 +42,8 @@ function initMap() {
         }
         console.log("lat", place.geometry.location.lat());
         console.log("lng", place.geometry.location.lng());
-
+        window.dolgota = place.geometry.location.lng();
+        window.shirota = place.geometry.location.lat();
         // If the place has a geometry, then present it on a map.
         if (place.geometry.viewport) {
             map.fitBounds(place.geometry.viewport);
@@ -99,6 +103,8 @@ window.onload = function() {
         Email: "test@email.ru",
         ObjectName: "Точка сбора мусора",
         adress: "Место", // place.name,
+        lng: "Долгота:",
+        lat: "Широта",
         date: "сегодня"
     },
         textj = ' ';
@@ -119,6 +125,8 @@ window.onload = function() {
         JsonStr.name = name.value;
         JsonStr.Email = email.value;
         JsonStr.ObjectName = obj_name.value;
+        JsonStr.lng = window.dolgota;
+        JsonStr.lat = window.shirota;
         textj = JSON.stringify(JsonStr);
         // Тут вхерач пост запрос на сервер с этим ЖСОНОм
         // на роут http://0.0.0.0:8000/map_append_object/
