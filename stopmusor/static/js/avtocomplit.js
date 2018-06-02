@@ -37,6 +37,8 @@ function initMap() {
             window.alert("No details available for input: '" + place.name + "'");
             return;
         }
+        console.log("lat", place.geometry.location.lat());
+        console.log("lng", place.geometry.location.lng());
 
         // If the place has a geometry, then present it on a map.
         if (place.geometry.viewport) {
@@ -98,13 +100,13 @@ window.onload = function() {
         ObjectName: "Точка сбора мусора",
         adress: "Место", // place.name,
         date: "сегодня"
-    };
+    },
+        textj = ' ';
     // var p_name = JSON.parse(JsonStr.name),
     //     p_email = JSON.parse(JsonStr.Email),
     //     p_objName = JSON.parse(JsonStr.ObjectName),
     //     p_adress = JSON.parse(JsonStr.adress),
     //     p_date = JSON.parse(JsonStr.date);
-    console.log("321");
     // Coordinaty.innerHTML = place.name;
     
     btnAkcept.addEventListener("click", function() {
@@ -117,6 +119,7 @@ window.onload = function() {
         JsonStr.name = name.value;
         JsonStr.Email = email.value;
         JsonStr.ObjectName = obj_name.value;
+        textj = JSON.stringify(JsonStr);
         // Тут вхерач пост запрос на сервер с этим ЖСОНОм
         // на роут http://0.0.0.0:8000/map_append_object/
 
@@ -140,7 +143,7 @@ window.onload = function() {
         };
         xhr.open("POST", url_, true); 
         // xhr.responseType = "text";
-        xhr.send(JsonStr.adress);   
+        xhr.send(textj);   
         // alert(JSON.stringify(JsonStr));
     });
 };
