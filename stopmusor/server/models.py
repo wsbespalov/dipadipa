@@ -1,6 +1,6 @@
 from django.db import models
 from django.db.models import permalink
-
+from datetime import datetime
 # Create your models here.
 
 class News(models.Model):
@@ -122,6 +122,15 @@ class MapObjects(models.Model):
     object_name = models.TextField(
         default="",
         verbose_name="Object name"
+    )
+    lng = models.FloatField(
+        default=0.0
+    )
+    lat = models.FloatField(
+        default=0.0
+    )
+    date = models.DateTimeField(
+        default=datetime.utcnow()
     )
     def __unicode__(self):
         return "%s" % self.object_name

@@ -96,6 +96,10 @@ function initMap() {
 
 
 window.onload = function() {
+    // send request on route /get_map_objects
+    // get list (array) of MapObjects from database
+    // console.log()
+
     // ----- Work with JSON ----- 
     var btnAkcept = document.getElementById('akcept');
     var JsonStr = {
@@ -133,7 +137,7 @@ window.onload = function() {
 
         var xhr = new XMLHttpRequest();
         var jsontext;
-        var url_ = "http://0.0.0.0:8000/map_append_object/"
+        var url_ = "http://0.0.0.0:8000/map_append_object/";
         xhr.timeout = 2000;
         xhr.onreadystatechange = function(e){
             console.log(this);

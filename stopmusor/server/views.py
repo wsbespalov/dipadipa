@@ -9,6 +9,9 @@ from .models import Question
 from .models import Papers
 from .models import Service
 from .models import MapObjects
+import json
+from datetime import datetime
+from django.utils import timezone
 
 def index(request):
     return render(
@@ -47,11 +50,34 @@ def map(request):
         }
     )
 
+@csrf_exempt
+def get_map_objects(request):
+    body = list(MapObjects.objects.all()[:5])
+    return HttpResponse(
+        body
+    )
+
 @csrf_exempt 
 def map_append_object(request):
     if request.method == 'POST':
         body = request.body
-        print(body)
+        if isinstance(body, bytes):
+            mbody = body.decode("utf-8")
+        elif isinstance(body, str):
+            pass
+        jbody = json.loads(mbody)
+        print(jbody)
+        # write into database
+        mo = MapObjects.objects.create(
+            adres = jbody.get("adress"),
+            name = jbody.get("name"),
+            email = jbody.get("Email"),
+            object_name = jbody.get("ObjectName"),
+            lng = float(jbody.get("lng")),
+            lat = float(jbody.get("lat")),
+            date = timezone.make_aware(datetime.now(),timezone.get_default_timezone())
+        )
+        mo.save()
         return HttpResponse(
             body
         )
