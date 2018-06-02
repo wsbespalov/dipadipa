@@ -139,6 +139,17 @@ class MapObjects(models.Model):
     def get_absolute_url(self):
         return ("view_map_objects", None, {"body": self.adres})
 
+    def to_json(self):
+        return dict(
+            adress=self.adres,
+            name=self.name,
+            Email=self.email,
+            ObjectName=self.email,
+            lng=self.lng,
+            lat=self.lat,
+            # date=self.date
+        )
+
 class Question(models.Model):
     objects = models.Manager()
     class Meta:

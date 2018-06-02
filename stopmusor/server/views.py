@@ -52,10 +52,18 @@ def map(request):
 
 @csrf_exempt
 def get_map_objects(request):
-    body = list(MapObjects.objects.all()[:5])
-    return HttpResponse(
-        body
-    )
+    if request.method == "GET":
+        body = list(MapObjects.objects.all()[:5])
+        mbody = []
+        for b in body:
+            mbody.append(b.to_json())
+        jbody = {
+            "data":mbody
+        }
+        response = json.dumps(jbody)
+        return HttpResponse(
+            response
+        )
 
 @csrf_exempt 
 def map_append_object(request):
