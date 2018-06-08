@@ -144,7 +144,7 @@ class MapObjects(models.Model):
             adress=self.adres,
             name=self.name,
             Email=self.email,
-            ObjectName=self.email,
+            ObjectName=self.object_name,
             lng=self.lng,
             lat=self.lat,
             # date=self.date

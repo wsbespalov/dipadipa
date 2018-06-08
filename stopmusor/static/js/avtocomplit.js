@@ -20,18 +20,24 @@ function initMap() {
     var autocomplete = new google.maps.places.Autocomplete(input);
     autocomplete.bindTo('bounds', map);
 
-    var infowindow = new google.maps.InfoWindow();
-    var marker = new google.maps.Marker({
-        map: map,
-        anchorPoint: new google.maps.Point(0, -29),
-        position: {lat: 47.215, lng: 38.899}
+    // var infowindow = new google.maps.InfoWindow();
+    // var marker = new google.maps.Marker({
+    //     map: map,
+    //     anchorPoint: new google.maps.Point(0, -29),
+    //     position: {lat: 47.215, lng: 38.899}
+    // });
+
+    var infoWindow = new google.maps.InfoWindow({
+        maxWidth: 160
     });
+    var Markers = new Array();
+    var markerCounter = 0;
 
     console.log(window.koordx);
 
     autocomplete.addListener('place_changed', function() {
-        infowindow.close();
-        marker.setVisible(false);
+        // infowindow.close();
+        // marker.setVisible(false);
         var place = autocomplete.getPlace();
         if (!place.geometry) {
             // User entered the name of a Place that was not suggested and
@@ -104,24 +110,29 @@ function initMap() {
         console.log(this);
         if (xhr1.readyState === 4){
             if (xhr1.status === 200){
-                jsontext1 = xhr1.response; // get answer and pars Json
+                jsontext1 = xhr1.response;
                 var jsontext2 = JSON.parse(jsontext1);
                 var data = Array();
                 data = jsontext2.data;
-                data.forEach(function (item, i, data) {
-                    console.log("Ballon in " + item.lat + ":" + item.lng);
-                    
+                
+                //
 
-                    // DRAW BALLONS
-                    var marker2 = new google.maps.Marker({
+                for (var i = 0; i < data.length; i++){
+                    var marker = new google.maps.Marker({
+                        position: new google.maps.LatLng(data[i].lat, data[i].lng),
                         map: map,
-                        position: {lat: item.lat, lng: item.lng}
                     });
-                    infowindow.setContent('<div><strong>' + item.name + '</strong><br>' + item.adress);
-                    infowindow.open(map, marker2);
-
-
-                });
+                    Markers.push(marker);
+                    google.maps.event.addListener(
+                        marker,
+                        'click',
+                        (function(marker, i){
+                            return function(){
+                                infoWindow.setContent(data[i].adress);
+                                infoWindow.open(map, marker);
+                            }
+                        })(marker, i));
+                }
                 
             } else {
                 console.error("XHR didn't work: ", xhr1.status);
@@ -137,43 +148,6 @@ function initMap() {
 
 
 window.onload = function() {
-    // send request on route /get_map_objects
-    // get list (array) of MapObjects from database
-    console.log("window.onload");
-    // var xhr1 = new XMLHttpRequest();
-    // var jsontext1;
-    // var url1_ = "http://0.0.0.0:8000/get_map_objects/";
-    // xhr1.timeout = 2000;
-    // xhr1.onreadystatechange = function(e){
-    //     console.log(this);
-    //     if (xhr1.readyState === 4){
-    //         if (xhr1.status === 200){
-    //             jsontext1 = xhr1.response; // get answer and pars Json
-    //             var jsontext2 = JSON.parse(jsontext1);
-    //             var data = Array();
-    //             data = jsontext2.data;
-    //             data.forEach(function (item, i, data) {
-    //                 console.log("Ballon in " + item.lat + ":" + item.lng);
-    //                 window.koordx = item.lat;
-
-    //                 // DRAW BALLONS
-
-
-
-
-    //             });
-                
-    //         } else {
-    //             console.error("XHR didn't work: ", xhr1.status);
-    //         }
-    //     }
-    // };
-    // xhr1.ontimeout = function (){
-    //     console.error("request timedout: ", xhr1);
-    // };
-    // xhr1.open("GET", url1_, true); 
-    // xhr1.send();
-
     // ----- Work with JSON ----- 
     var btnAkcept = document.getElementById('akcept');
     var JsonStr = {
@@ -186,13 +160,8 @@ window.onload = function() {
         date: "сегодня"
     },
         textj = ' ';
-    // var p_name = JSON.parse(JsonStr.name),
-    //     p_email = JSON.parse(JsonStr.Email),
-    //     p_objName = JSON.parse(JsonStr.ObjectName),
-    //     p_adress = JSON.parse(JsonStr.adress),
-    //     p_date = JSON.parse(JsonStr.date);
-    // Coordinaty.innerHTML = place.name;
-    
+
+    // ----- Add event listener to accept button -----
     btnAkcept.addEventListener("click", function() {
      var adres = document.getElementById('coord'),
         name = document.getElementById('pname'),
@@ -206,8 +175,6 @@ window.onload = function() {
         JsonStr.lng = window.dolgota;
         JsonStr.lat = window.shirota;
         textj = JSON.stringify(JsonStr);
-        // Тут вхерач пост запрос на сервер с этим ЖСОНОм
-        // на роут http://0.0.0.0:8000/map_append_object/
 
         var xhr = new XMLHttpRequest();
         var jsontext;
@@ -218,19 +185,20 @@ window.onload = function() {
             console.log(this);
             if (xhr.readyState === 4){
                 if (xhr.status === 200){
-                    jsontext = xhr.response; // get answer and pars Json
+                    jsontext = xhr.response;
                     vivod();
                 } else {
                     console.error("XHR didn't work: ", xhr.status);
                 }
             }
         };
+        
         xhr.ontimeout = function (){
             console.error("request timedout: ", xhr);
 
         };
+
         xhr.open("POST", url_, true); 
-        // xhr.responseType = "text";
         xhr.send(textj); 
         
         function vivod() {
