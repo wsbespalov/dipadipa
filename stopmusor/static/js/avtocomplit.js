@@ -128,10 +128,11 @@ function initMap() {
                         'click',
                         (function(marker, i){
                             return function(){
-                                infoWindow.setContent(data[i].adress);
+                                infoWindow.setContent("Объект по адресу: \n" + data[i].adress);
                                 infoWindow.open(map, marker);
                             }
-                        })(marker, i));
+                        })(marker, i)
+                    );
                 }
                 
             } else {
