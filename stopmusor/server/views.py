@@ -28,7 +28,7 @@ def news(request):
         request=request,
         template_name='news.html',
         context={
-            "news": News.objects.all()[:5]
+            "news": News.objects.all()[:15]
         }
     )
 def service(request):

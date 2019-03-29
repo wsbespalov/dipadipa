@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 {% block content %}
     <div class="col-xl-12">
         <h1 class="text-center text-uppercase my-3">Новости</h1>
@@ -9,7 +10,7 @@
         
         <div class="col-xl-12">
             <div class="card my-2 text-center">
-                <img class="card-img-top" src="../static/img/diktor.jpeg" alt="...">
+                <img class="rounded mx-auto" style="height:400px" src={{ n.image.url }} alt="..." >
                 <div class="card-header news-gradient">{{ n.title }}</div>
                 <div class="card-body text-secondary">
                     <h4 class="card-title">{{ n.slug }}</h4>

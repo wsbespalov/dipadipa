@@ -3,6 +3,8 @@ from django.db.models import permalink
 from datetime import datetime
 # Create your models here.
 
+from stopmusor import settings
+
 class News(models.Model):
     objects = models.Manager()
     class Meta:
@@ -26,6 +28,9 @@ class News(models.Model):
     posted = models.DateField(
         db_index=True,
         auto_now_add=True
+    )
+    image = models.ImageField(
+        upload_to='media'
     )
 
     def __unicode__(self):
@@ -59,6 +64,9 @@ class Papers(models.Model):
         db_index=True,
         auto_now_add=True
     )
+    # image = models.ImageField(
+    #     upload_to='media'
+    # )
 
     def __unicode__(self):
         return "%s" % self.title
@@ -169,6 +177,10 @@ class Question(models.Model):
     body = models.TextField(
         default="",
         verbose_name="Question Body"
+    )
+    ansver = models.TextField(
+        default="",
+        verbose_name="Ansver Body"
     )
     posted = models.DateField(
         db_index=True,
