@@ -30,7 +30,8 @@ class News(models.Model):
         auto_now_add=True
     )
     image = models.ImageField(
-        upload_to='media'
+        upload_to='media',
+        default="image.jpeg"
     )
 
     def __unicode__(self):
@@ -64,9 +65,10 @@ class Papers(models.Model):
         db_index=True,
         auto_now_add=True
     )
-    # image = models.ImageField(
-    #     upload_to='media'
-    # )
+    image = models.ImageField(
+        upload_to='media',
+        default="image.jpeg"
+    )
 
     def __unicode__(self):
         return "%s" % self.title
@@ -102,6 +104,10 @@ class Service(models.Model):
     posted = models.DateField(
         db_index=True,
         auto_now_add=True
+    )
+    image = models.ImageField(
+        upload_to='media',
+        default="image.jpeg"
     )
 
     def __unicode__(self):

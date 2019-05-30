@@ -4,8 +4,10 @@
     <h1 class="text-center text-uppercase my-3">Карта расположения стихийных свалок</h1>
 </div>
 
-<div style="height: 800px; width: 1150px;">
-    <style>
+<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=9089eaf8-e08a-48b1-994f-1895c109beb7" type="text/javascript"></script>
+
+<!-- <div style="height: 800px; width: 1150px;"> -->
+    <!-- <style>
         /* Always set the map height explicitly to define the size of the div
          * element that contains the map. */
         #map {
@@ -58,9 +60,9 @@
             font-size: 13px;
             font-weight: 300;
         }
-    </style>
+    </style>-->
 
-    <input id="pac-input" class="controls" type="text"
+    <!-- <input id="pac-input" class="controls" type="text"
            placeholder="Enter a location">
     <div id="type-selector" class="controls">
         <input type="radio" name="type" id="changetype-all" >
@@ -74,21 +76,66 @@
 
         <input type="radio" name="type" id="changetype-geocode">
         <label for="changetype-geocode">Geocodes</label>
-    </div>
-    <div id="map"></div>
-<!-- <script type="text/javascript" charset="utf-8" async 
-				src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A3c6a84a22002563234cdb5866ae4b952ccb83e89a041f304eca5507fec789728&amp;width=1280&amp;height=720&amp;lang=ru_RU&amp;scroll=true">
-			</script> -->
+    </div> -->
+	<div id="map" style="height: 800px; width: 1150px;"></div>
+	<script>
+			var myMap,
+				lat = 47.215, // Широта
+				lng = 38.899; // Долгота Таганрога
 
-    <script>
+			// Дождёмся загрузки API и готовности DOM.
+			ymaps.ready(init);
+			
+			function init () {
+				// Создание экземпляра карты и его привязка к контейнеру с
+				// заданным id ("map").
+				myMap = new ymaps.Map('map', {
+					// При инициализации карты обязательно нужно указать
+					// её центр и коэффициент масштабирования.
+					center: [lat, lng], // Коотринаты
+					zoom: 14
+				}, {
+					searchControlProvider: 'yandex#search'
+				}),
 
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDSYBzSsLmsN_hkf7SIVOtJzwK2fCSaRZo&libraries=places&callback=initMap"
-            async defer></script>
+				myGeoObject = new ymaps.GeoObject({
+					// Описание геометрии.
+					geometry: {
+						type: "Point",
+						coordinates: [lat, lng]
+					}
+					
+				})
+
+				myMap.geoObjects
+					.add(myGeoObject)
+					.add(new ymaps.Placemark([lat, lng-0.01], {
+						balloonContent: 'цвет <strong>воды пляжа бонди</strong>'
+					}, {
+						preset: 'islands#icon',
+						iconColor: '#0095b6'
+					}))
+					.add(new ymaps.Placemark([lat, lng], {
+						balloonContent: '<strong>серобуромалиновый</strong> цвет'
+					}, {
+						preset: 'islands#dotIcon',
+						iconColor: '#735184'
+					}))
+				//document.getElementById('destroyButton').onclick = function () {
+					// Для уничтожения используется метод destroy.
+				//	myMap.destroy();
+				//};
+			
+			}
+	</script>
+
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDSYBzSsLmsN_hkf7SIVOtJzwK2fCSaRZo&libraries=places&callback=initMap"
+		async defer>
+	</script> -->
 
 <!--</div>-->
 
-</div>
+<!-- </div> -->
 <div class="col-xl-12">
     <div class="card my-2">
         <div class="card-header">
